@@ -40,12 +40,15 @@ def result(board, action):
     Returns the board that results from making move (i, j) on the board.
     """
     i, j = action
+    if not (0 <= i < 3 and 0 <= j < 3):
+        raise ValueError("Invalid action: cell is out of bounds.")
     if board[i][j] is not EMPTY:
         raise ValueError("Invalid action: cell is not empty.")
     
     new_board = [row[:] for row in board]  # Create a deep copy of the board
     new_board[i][j] = player(board)
     return new_board
+
 
 
 
